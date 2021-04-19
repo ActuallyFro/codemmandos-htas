@@ -1,26 +1,46 @@
 <html>
-<title>Hello World</title>
-<!-- Source: https://docs.microsoft.com/en-us/previous-versions/windows/desktop/wiaaut/-wiaaut-getting-started-samples -->
+<head>
+  <!-- Escape to Quit-->
+  <script language="VBScript">
+    Sub Document_OnKeyUp()
+      intKeyCode = Window.Event.Keycode
+      If intKeyCode = 27 Then Window.Close
+    End Sub
 
-<hta:application id="oHTA" icon="00_Resources/fav.ico"/>
-<object ID="DeviceManager1" Width=0 Height=0 ClassID="CLSID:E1C5D730-7E97-4D8A-9E42-BBAE87C2059F"></object>
-<object ID="CommonDialog1" Width=0 Height=0 ClassID="CLSID:850D1D11-70F3-4BE5-9A11-77AA6B2BB201"></object>
-<script language="vbscript" src="wiaaut.vbs"></script>
-<script language="vbscript">
+    Sub Window_onLoad
+      window.resizeTo 435, 269
+    End Sub    
+  </script>
 
-MsgBox("Hello, World!") ' Display message on computer scree
+  <title>Codemmandos: Hello World</title>
+  <!-- Source: https://docs.microsoft.com/en-us/previous-versions/windows/desktop/wiaaut/-wiaaut-getting-started-samples -->
 
-</script>
+  <hta:application id="oHTA" icon="../00_Resources/fav.ico"/>
+  <object ID="DeviceManager1" Width=0 Height=0 ClassID="CLSID:E1C5D730-7E97-4D8A-9E42-BBAE87C2059F"></object>
+  <object ID="CommonDialog1" Width=0 Height=0 ClassID="CLSID:850D1D11-70F3-4BE5-9A11-77AA6B2BB201"></object>
+  <script language="vbscript" src="wiaaut.vbs"></script>
 </head>
-<body scroll="no">
-</body>
+
+<!-- Stolen from codemmandos.com: -->
+  <style>
+    .accentColor {
+      color: #FFC940;
+    }
+
+    .primaryColor {
+      color: #FFFFFF;
+    }
+  </style>
+
+<body scroll="no" style="text-align:center;" bgcolor="black">
+    <h1> <span class="accentColor">CODE</span><span class="primaryColor">MMANDOS</span></h1>
+    <h3><span class="primaryColor">Press F5 to see the VBScript Box</span></h3>
+  </body>
 </html>
 
 <!-- Source: https://stackoverflow.com/questions/31005179/close-an-hta-when-the-user-presses-the-esc-key -->
-<!-- Escape to Quit-->
-<script language="VBScript">
-    Sub Document_OnKeyUp()
-        intKeyCode = Window.Event.Keycode
-        If intKeyCode = 27 Then Window.Close
-    End Sub
+
+<!-- The MAIN run is now AFTER the html, so the HTA window renders... -->
+<script language="vbscript">
+  MsgBox("Hello World!") ' Display message on computer screen
 </script>
