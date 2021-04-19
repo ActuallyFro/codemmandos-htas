@@ -1,0 +1,65 @@
+<html>
+<head>
+  <hta:application id="NaP" icon="../00_Resources/fav.ico" version="1.0.0"/>
+  <title>Codemmandos: NOT a Prime</title>
+
+  <!-- Escape to Quit-->
+  <script language="VBScript">
+    Sub Document_OnKeyUp()
+      intKeyCode = Window.Event.Keycode
+      If intKeyCode = 27 Then Window.Close
+    End Sub
+
+    Sub Window_onLoad
+      window.resizeTo 435, 269
+      document.title = document.title & ",  Version " & NaP.Version
+    End Sub
+  </script>
+</head>
+
+<!-- Stolen from codemmandos.com: -->
+  <style>
+    .accentColor {
+      color: #FFC940;
+    }
+
+    .primaryColor {
+      color: #FFFFFF;
+    }
+  </style>
+
+<body scroll="no" style="text-align:center;" bgcolor="black">
+    <h1> <span class="accentColor">CODE</span><span class="primaryColor">MMANDOS</span></h1>
+
+    <h3><span class="primaryColor">Input a number to see if it's <u>NOT</u> prime</span></h3>
+      <p><input type="text" id="InputNumber"/>
+        &nbsp;
+      <input type="button" value="Check" onclick="vbscript:CheckIfPrime()" /></p>
+      <p id="OutputResult" class="primaryColor"></p>
+      <span class="primaryColor">If You'd like to find PRIMES <a href="https://www.robvanderwoude.com/vbstech_hta.php">see here</a></span>
+
+  </body>
+</html>
+
+<script language="VBScript">
+  Option Explicit
+
+  Sub CheckIfPrime( )
+    Dim i, intInput
+    intInput = document.getElementById( "InputNumber" ).value
+
+    If intInput < 3 Then
+      document.getElementById( "OutputResult" ).innerHTML = "BOO, " & intInput & " is prime!"
+    Else
+      For i = 2 To intInput - 1
+    
+      If intInput Mod i = 0 Then
+        document.getElementById( "OutputResult" ).innerHTML = "YAY, " & intInput & " is NOT prime!"
+        Exit Sub
+      End If
+
+      Next
+      document.getElementById( "OutputResult" ).innerHTML = "BOO, " & intInput & " is prime!"
+    End If
+  End Sub
+</script>
