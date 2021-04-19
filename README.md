@@ -13,3 +13,7 @@ Reccomended Settings
 Notable Commands
 ----------------
 F5 - Refresh (will RELOAD the HTA!)
+
+Resources
+---------
+- hta Tag/Element for MS Docs: https://docs.microsoft.com/en-us/previous-versions/ms536495(v=vs.85)
