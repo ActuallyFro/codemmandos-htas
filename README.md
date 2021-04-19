@@ -12,7 +12,8 @@ Reccomended Settings
 
 Notable Commands
 ----------------
-F5 - Refresh (will RELOAD the HTA!)
+1. F5 - Refresh (will RELOAD the HTA!)
+2. Convert file w/o breaks for base64: `base64 fav.ico -w 0 > CLI_Base64_Favicon.b64` 
 
 Resources
 ---------
