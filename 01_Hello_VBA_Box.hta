@@ -1,5 +1,7 @@
 <html>
-<title>Sample HTA</title>
+<title>Hello World</title>
+<!-- Source: https://docs.microsoft.com/en-us/previous-versions/windows/desktop/wiaaut/-wiaaut-getting-started-samples -->
+
 <hta:application id="oHTA"/>
 <object ID="DeviceManager1" Width=0 Height=0 ClassID="CLSID:E1C5D730-7E97-4D8A-9E42-BBAE87C2059F"></object>
 <object ID="CommonDialog1" Width=0 Height=0 ClassID="CLSID:850D1D11-70F3-4BE5-9A11-77AA6B2BB201"></object>
@@ -13,3 +15,12 @@ MsgBox("Hello, World!") ' Display message on computer scree
 <body scroll="no">
 </body>
 </html>
+
+<!-- Source: https://stackoverflow.com/questions/31005179/close-an-hta-when-the-user-presses-the-esc-key -->
+<!-- Escape to Quit-->
+<script language="VBScript">
+    Sub Document_OnKeyUp()
+        intKeyCode = Window.Event.Keycode
+        If intKeyCode = 27 Then Window.Close
+    End Sub
+</script>
