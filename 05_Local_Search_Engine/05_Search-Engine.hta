@@ -60,13 +60,21 @@ Search results from your query will show up here AFTER you click search!
 <script language="VBScript">
   Option Explicit
 
-  Sub runSearchVBScript( )
-    Dim query1
+  Sub updateResultsVBScript(targetOutput, message)
+    document.getElementById( targetOutput ).innerHTML =  message
+  End Sub
+
+  Sub runSearchVBScript()
+    Dim query1, message, targetOutput
+    
+    targetOutput = "searchResults"
+
     query1 = document.getElementById( "vbQ1" ).value
+    message =  "{searching for... '" & query1 & "'}"
 
-    document.getElementById( "searchResults" ).innerHTML =  "{searching for... '" & query1 & "'}"
+    Call updateResultsVBScript(targetOutput,message)
+  End Sub
 
-End Sub
 </script>
 
 <script language="JavaScript">
