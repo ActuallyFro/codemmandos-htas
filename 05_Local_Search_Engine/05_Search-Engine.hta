@@ -12,7 +12,7 @@
     End Sub
 
     Sub Window_onLoad
-      window.resizeTo 482, 365
+      window.resizeTo 487, 800 // 1:1.61
       document.title = document.title & ",  Version " & GlgC.Version
     End Sub
   </script>
@@ -32,13 +32,26 @@
 <body scroll="no" style="text-align:center;" bgcolor="black">
     <h1> <span class="accentColor">CODE</span><span class="primaryColor">MMANDOS</span></h1>
 
-    <h3><span class="primaryColor">When you click a button it will change the text of sample paragraph.</span></h3>
+    <h3><span class="primaryColor">Enter your search string:</span></h3>
+
+    <!-- <form action="#" onsubmit="return sayHello(this);"> <!-- [4] -->
+    <form onsubmit="sayHello(this)"> <!-- action="javascript:;" -->
+      <h3><span class="primaryColor"><label>Query word or phrase</label></span>
+      <input type="text" id="q1"><br><br>
+      <!-- <h3><span class="primaryColor"><label>Second word(s)</label></span>
+      <input type="text" id="q2"><br><br> -->
+      <input type="submit" value="Search">
+    </form>
+    <!-- <button onclick="sayHello()">Click me</button> -->
+
+    <br>
+    <br> <!-- Coding like it's 1998-->
+    <br>
 
     <textarea id="demo" rows="4" cols="50">
       At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
     </textarea> <!-- [3] -->
 
-    <button onclick="sayHello()">Click me</button>
 
   </body>
 </html>
@@ -48,8 +61,22 @@
       document.getElementById(target).innerHTML = message;
   }
 
-  function sayHello(){ //<!-- [2] -->
-    change_text("demo","You clicked the button, I am new paragraph.")
+  function sayHello(theForm){ 
+    change_text("demo","<searching for '"+ theForm.q1 +"'>") //<!-- [2] -->
+
+    //<!-- [5] -->
+    // var reason = ""; 
+    // reason += validateName(theForm.name);
+    // reason += validatePhone(theForm.phone);
+    // reason += validateEmail(theForm.emaile);
+
+    // if (reason != "") {
+    //     alert("Some fields need correction:\n" + reason);
+    // } else {
+    //     simpleCart.checkout();
+    // }
+    // return false;
+
   }
 
 </script>
@@ -59,4 +86,8 @@ References
 1. https://errorsea.com/how-to-change-text-onclick-event-javascript/
 2. https://stackoverflow.com/questions/44195082/how-to-pass-element-id-in-javascript-as-argument-or-parameter
 3. https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_textarea
+4. https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_input_test
+5. https://stackoverflow.com/questions/10520899/form-action-with-javascript/34467977
+
 -->
+
