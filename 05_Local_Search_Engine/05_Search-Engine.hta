@@ -91,11 +91,16 @@ Search results from your query will show up here AFTER you click search!
     // Call OpenFile("ScriptOutput.csv")
 
     Dim ListOfTxtFiles
-    ListOfTxtFiles = GetDirectorFilesByType(GetDirectory(),"hta")
+    ListOfTxtFiles = GetDirectorFilesByType(GetDirectory(),"txt")
 
-    Dim ListAsString
-    ListAsString = Join(ListOfTxtFiles,", ")
-    message = message & "[DEBUGGING] Found TEXT FILES! (" & ListAsString & ")"& "\n"
+    If IsArray(ListOfTxtFiles) And UBound(ListOfTxtFiles) >= 0 Then
+      Dim ListAsString
+      ListAsString = Join(ListOfTxtFiles,", ")
+      message = message & "[DEBUGGING] Found TEXT FILES! (" & ListAsString & ")"& "\n"
+    Else
+      message = message & "[DEBUGGING] NO TEXTFILES! ({})"& "\n"
+    End If
+    
     // Iterate OVER the files, for individual string searching...
     // Dim files, singleFile
     // For Each singleFile In files
