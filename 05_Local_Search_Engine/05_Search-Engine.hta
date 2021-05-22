@@ -111,6 +111,13 @@ Search results from your query will show up here AFTER you click search!
         message = message & "[DEBUGGING] Opening file: {" & filePathAndName & "}" & vbnewline
       Next
 
+    //This for ALL of Lines <ListOfTxtFiles = GetDirec... to Next> {Lines 95 to 112ish}?? -- https://stackoverflow.com/questions/16751301/find-specific-string-in-a-text-file-with-vbs-script
+    // For Each f In fso.GetFolder("C:\VBS").Files
+    //   If LCase(fso.GetExtensionName(f.Name)) = "txt" Then
+    //     text = f.OpenAsTextStream.ReadAll
+    //     f.OpenAsTextStream(2).Write re.Replace(text, newText & "$1")
+    //   End If
+    // Next
 
     Else
       message = message & "[DEBUGGING] NO TEXTFILES! ({})"& vbnewline
