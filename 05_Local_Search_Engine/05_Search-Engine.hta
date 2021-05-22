@@ -37,7 +37,7 @@
     <h3><span class="primaryColor">Query word or phrase</span></h3>
       <p><input type="text" id="q1"/>
         &nbsp;
-    <button onclick="runSearch()">Search</button> -->
+    <button onclick="runSearchJavaScript()">Search</button> -->
 
     <br>
     <br> <!-- Coding like it's 1998-->
@@ -57,10 +57,26 @@ Search results from your query will show up here AFTER you click search!
     document.getElementById(target).innerHTML = message;
   }
   
-  function runSearch(){ //<!-- [2] -->
-    //MOST OF THIS REIVENTING THE WHEEL STEMS FROM TRIANGLE BRACKETS!!!!
+  function checkForLocalFileAccessJavaScript(){
+    var retVal = false
+    // Check for the various File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      // Great success! All the File APIs are supported.
+      retVal = true
+    } else {
+      alert('The File APIs are not fully supported in this browser.');
+    }
+    return retVal;
+  }
 
-    var results = '{searching for..."'+document.getElementById("q1").value+'"}';
+  function runSearchJavaScript(){ //<!-- [2] -->
+    var results = "";
+
+    if(!checkForLocalFileAccessJavaScript()){
+      results = "ERROR! -- Your browser does NOT support LocalFile access! (For JavaScript)";
+    } else {
+      results = '{searching for..."'+document.getElementById("q1").value+'"}';
+    }
 
     updateResults("searchResults", results);
   }
