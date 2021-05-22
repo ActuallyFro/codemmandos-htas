@@ -59,7 +59,10 @@ Search results from your query will show up here AFTER you click search!
   
   function runSearch(){ //<!-- [2] -->
     //MOST OF THIS REIVENTING THE WHEEL STEMS FROM TRIANGLE BRACKETS!!!!
-    updateResults("searchResults",'{searching for..."'+document.getElementById("q1").value+'"}')
+
+    var results = '{searching for..."'+document.getElementById("q1").value+'"}';
+
+    updateResults("searchResults", results);
   }
   
   </script>
