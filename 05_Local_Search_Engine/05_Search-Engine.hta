@@ -56,34 +56,14 @@ Search results from your query will show up here AFTER you click search!
   </body>
 </html>
 
+<script language="VBScript" src="lib/FileOperations.vbs"></script>
+
 <script language="VBScript">
   Option Explicit
 
   Sub updateResultsVBScript(targetOutput, message)
     document.getElementById( targetOutput ).innerHTML =  message 
   End Sub
-
-  Function GetFullName() // <!-- [7] -->
-    GetFullName = Replace(cmdoSE.commandLine,"""","") //WARNING! -- This depends on the HTA definition above!!!
-  End Function
-
-  Function GetDirectory()
-    Dim strPath
-    Dim objFSO, objFile, objShell
-
-
-    //Set objShell = CreateObject("Wscript.Shell")
-    //strPath = Wscript.ScriptFullName
-    strPath = GetFullName()
-
-    //<!-- [6] -->
-    //Set fso = CreateObject("Scripting.FileSystemObject")
-
-    Set objFSO = CreateObject("Scripting.FileSystemObject")
-    //Set objFile = objFSO.GetFile("./05_Search-Engine.hta")
-    Set objFile = objFSO.GetFile(strPath)
-    GetDirectory = objFSO.GetParentFolderName(objFile)
-  End Function
 
   Sub runSearchVBScript()
     Dim query1, message, targetOutput
@@ -109,14 +89,10 @@ Search results from your query will show up here AFTER you click search!
     Call updateResultsVBScript(targetOutput,message)
 
     //Call RunProgram() //<!-- [ii] --> -- WORKS!
-  End Sub
+    Call ListFilesWriteToCSV("ScriptOutput.csv")
+    Call OpenFile("ScriptOutput.csv")
 
-  Sub RunProgram()   //<!-- [ii] -->
-      Dim objShell
-    Set objShell = CreateObject("Wscript.Shell")  
-    objShell.Run "notepad.exe " & GetFullName() //Self-hosted file opening?
   End Sub
-
 </script>
 
 <script language="JavaScript">
