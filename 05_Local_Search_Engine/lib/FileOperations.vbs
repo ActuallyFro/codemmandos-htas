@@ -28,10 +28,10 @@
     Dim outFileName
     outFileName = "ScriptOutput.csv"
 
-    // ' Create a FileSystemObject  
+    ' Create a FileSystemObject  
     Set fso = CreateObject("Scripting.FileSystemObject")
 
-    // ' Define folder we want to list files from
+    ' Define folder we want to list files from
     strPath = GetDirectory()
 
     If  name <> "" Then
@@ -41,15 +41,27 @@
     Set folder = fso.GetFolder(strPath)
     Set files = folder.Files
 
-    // ' Create CSV file to output test data
     Set OutputFile = fso.CreateTextFile(strPath & "/" & outFileName, True)
 
-    // ' Loop through each file 
+
+    ' CSV Header
+      OutputFile.Write("Name")
+      OutputFile.Write(",")
+      OutputFile.Write("DateCreated")
+      OutputFile.Write(",")
+      OutputFile.Write("DateLastAccessed")
+      OutputFile.Write(",")
+      OutputFile.Write("DateLastModified")
+      OutputFile.Write(",")
+      OutputFile.WriteLine("Size")
+
+
+    ' Loop through each file 
     Dim singleFile
     //As Variant //https://stackoverflow.com/questions/46510416/vba-illegal-assignment-in-for-each
     For Each singleFile In files
 
-      // ' Output file properties to a text file
+      ' Output file properties to a text file
       OutputFile.Write(singleFile.Name)
       OutputFile.Write(",")
       OutputFile.Write(singleFile.DateCreated)
@@ -62,7 +74,7 @@
       
     Next
 
-    // ' Close text file
+    ' Close text file
     OutputFile.Close
   End Sub
 
