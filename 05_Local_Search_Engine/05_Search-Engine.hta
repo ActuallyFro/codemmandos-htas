@@ -1,4 +1,3 @@
-
 <html>
 <head>
   <hta:application id="cmdoSE" icon="../00_Resources/fav.ico" version="1.0.0"/>
@@ -93,16 +92,13 @@ Search results from your query will show up here AFTER you click search!
 
     query1 = document.getElementById( "vbQ1" ).value
 
-
-
-    //CAN'T! <!-- [d] -->
-    // scriptdir = WScript.ScriptFullName //CreateObject("Scripting.FileSystemObject").GetParentFolderName(WScript.ScriptFullName)
-
-    // Set objShell = CreateObject("Wscript.Shell")  
-    // objShell.Run "notepad.exe c:\script\test.txt"
-
     Dim currScriptDir
     currScriptDir = GetDirectory()
+
+    //Updating the <textarea> DOES NOT linebreak as expected...
+    // Could [i] output to file, and bring in as chunks (https://stackoverflow.com/questions/43217943/i-have-a-text-area-that-will-have-multiple-lines-of-text)
+    // or
+    // [ii] output to file and open it (https://stackoverflow.com/questions/44579719/how-to-open-an-appication-using-vbscript-within-an-hta-file)
 
     message = "[DEBUGGING] Current Script Directory: " & currScriptDir & "\n"
     message = message & "\n"
@@ -111,6 +107,14 @@ Search results from your query will show up here AFTER you click search!
     // message = Replace(message, "\n", vbCrLf)
 
     Call updateResultsVBScript(targetOutput,message)
+
+    //Call RunProgram() //<!-- [ii] --> -- WORKS!
+  End Sub
+
+  Sub RunProgram()   //<!-- [ii] -->
+      Dim objShell
+    Set objShell = CreateObject("Wscript.Shell")  
+    objShell.Run "notepad.exe " & GetFullName() //Self-hosted file opening?
   End Sub
 
 </script>
