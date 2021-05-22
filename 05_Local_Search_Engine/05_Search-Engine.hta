@@ -86,11 +86,28 @@ Search results from your query will show up here AFTER you click search!
 
     // message = Replace(message, "\n", vbCrLf)
 
-    Call updateResultsVBScript(targetOutput,message)
-
     //Call RunProgram() //<!-- [ii] --> -- WORKS!
-    Call ListFilesWriteToCSV("ScriptOutput.csv")
-    Call OpenFile("ScriptOutput.csv")
+    // Call ListFilesWriteToCSV("ScriptOutput.csv")
+    // Call OpenFile("ScriptOutput.csv")
+
+    Dim ListOfTxtFiles
+    ListOfTxtFiles = GetDirectorFilesByType(GetDirectory(),"hta")
+
+    Dim ListAsString
+    ListAsString = Join(ListOfTxtFiles,", ")
+    message = message & "[DEBUGGING] Found TEXT FILES! (" & ListAsString & ")"& "\n"
+    // Iterate OVER the files, for individual string searching...
+    // Dim files, singleFile
+    // For Each singleFile In files
+    //   If LCase(fso.GetExtensionName(singleFile.Name)) = fileTypeThen
+    //     FileList = ArrayAddItem(FileList, singleFile.Name)
+    //   End If
+      
+    // Next
+
+
+
+    Call updateResultsVBScript(targetOutput,message)
 
   End Sub
 </script>
@@ -142,6 +159,7 @@ b. https://social.technet.microsoft.com/Forums/office/en-US/71351a4d-8034-4cf8-b
 c. https://stackoverflow.com/questions/6424094/how-to-define-do-nothing-in-javascript/6424121 <void(0) == No-OP>
 d. https://stackoverflow.com/questions/40476304/error-object-required-wscript-in-hta <"The HTA engine doesn't provide a WScript object">
 e. https://stackoverflow.com/questions/46510416/vba-illegal-assignment-in-for-each <For Each thows an error>
+f. https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/error-messages/this-array-is-fixed-or-temporarily-locked <temporary fixed or Locked arrays -- NOT -- Dim FileList(1); YES DimeFileList(); ReDim FileList(1)...>
 -->
 
 

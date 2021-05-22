@@ -84,6 +84,69 @@
     OutputFile.Close
   End Sub
 
+
+' https://developer.rhino3d.com/guides/rhinoscript/testing-for-empty-arrays/
+Function IsArrayDimmed(arr) 
+  IsArrayDimmed = False
+  If IsArray(arr) Then
+    On Error Resume Next
+    Dim ub : ub = UBound(arr)
+    If (Err.Number = 0) And (ub >= 0) Then IsArrayDimmed = True
+  End If  
+End Function
+
+  'https://stackoverflow.com/questions/4605270/add-item-to-array-in-vbscript
+  Function ArrayAddItem(arr, val)
+      ReDim Preserve arr(UBound(arr) + 1)
+      arr(UBound(arr)) = val
+      ArrayAddItem = arr
+  End Function
+
+' Sub ArrayAddItem(arr, val)
+'     ReDim Preserve arr(UBound(arr) + 1)
+'     arr(UBound(arr)) = val
+' End Sub
+
+' objFSO.GetExtensionName(objFile.Name))
+  Function GetDirectorFilesByType(folderDirectory, fileType)
+
+    Dim fso, folder, files, singleFile
+    Dim FileList
+    FileList = Array()
+    ' ReDim FileList(1)
+    ' FileList(0) = ""
+
+    ' FileList = Array()
+
+    Set fso = CreateObject("Scripting.FileSystemObject")
+
+    Set folder = fso.GetFolder(folderDirectory)
+    Set files = folder.Files
+
+    ' Dim isFirstAdded
+    ' isFirstAdded = false
+
+    For Each singleFile In files
+      If LCase(fso.GetExtensionName(singleFile.Name)) = fileType Then
+        ' IF NOT isFirstAdded Then
+        FileList = ArrayAddItem(FileList, singleFile.Name)
+        ' Else
+        '   FileList(0) = singleFile.Name
+        '   isFirstAdded = true
+        ' End If
+      End If
+      
+    Next
+
+    ' SubFolder Recursion!
+    '---------------------
+    ' For Each objSubFolder In objFolder.SubFolders
+    '     Recurse objSubFolder
+    ' Next
+    GetDirectorFilesByType = FileList
+  End Function
+
+
   Sub RunProgram()   //<!-- [ii] -->
       Dim objShell
     Set objShell = CreateObject("Wscript.Shell")  
