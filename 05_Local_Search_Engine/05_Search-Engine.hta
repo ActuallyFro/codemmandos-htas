@@ -1,8 +1,8 @@
 
 <html>
 <head>
-  <hta:application id="GlgC" icon="../00_Resources/fav.ico" version="1.0.0"/>
-  <title>Codemmandos: 'GoogleCode' (Custom, code-based Google Search)</title>
+  <hta:application id="cmdoSE" icon="../00_Resources/fav.ico" version="1.0.0"/>
+  <title>Codemmandos: Search Engine (Simple .txt Searching)</title>
 
   <!-- Escape to Quit-->
   <script language="VBScript">
@@ -12,8 +12,8 @@
     End Sub
 
     Sub Window_onLoad
-      window.resizeTo 487, 800 // 1:1.61
-      document.title = document.title & ",  Version " & GlgC.Version
+      window.resizeTo 1208, 750 // 1:1.61
+      document.title = document.title & ",  Version " & cmdoSE.Version
     End Sub
   </script>
 </head>
@@ -48,7 +48,7 @@
     <br> <!-- Coding like it's 1998-->
     <br>
 
-    <textarea id="searchResults" rows="4" cols="50">
+    <textarea id="searchResults" rows="20" cols="100">
 Search results from your query will show up here AFTER you click search!
     </textarea>
 
@@ -61,8 +61,30 @@ Search results from your query will show up here AFTER you click search!
   Option Explicit
 
   Sub updateResultsVBScript(targetOutput, message)
-    document.getElementById( targetOutput ).innerHTML =  message
+    document.getElementById( targetOutput ).innerHTML =  message 
   End Sub
+
+  Function GetFullName() // <!-- [7] -->
+    GetFullName = Replace(cmdoSE.commandLine,"""","") //WARNING! -- This depends on the HTA definition above!!!
+  End Function
+
+  Function GetDirectory()
+    Dim strPath
+    Dim objFSO, objFile, objShell
+
+
+    //Set objShell = CreateObject("Wscript.Shell")
+    //strPath = Wscript.ScriptFullName
+    strPath = GetFullName()
+
+    //<!-- [6] -->
+    //Set fso = CreateObject("Scripting.FileSystemObject")
+
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    //Set objFile = objFSO.GetFile("./05_Search-Engine.hta")
+    Set objFile = objFSO.GetFile(strPath)
+    GetDirectory = objFSO.GetParentFolderName(objFile)
+  End Function
 
   Sub runSearchVBScript()
     Dim query1, message, targetOutput
@@ -70,7 +92,23 @@ Search results from your query will show up here AFTER you click search!
     targetOutput = "searchResults"
 
     query1 = document.getElementById( "vbQ1" ).value
-    message =  "{searching for... '" & query1 & "'}"
+
+
+
+    //CAN'T! <!-- [d] -->
+    // scriptdir = WScript.ScriptFullName //CreateObject("Scripting.FileSystemObject").GetParentFolderName(WScript.ScriptFullName)
+
+    // Set objShell = CreateObject("Wscript.Shell")  
+    // objShell.Run "notepad.exe c:\script\test.txt"
+
+    Dim currScriptDir
+    currScriptDir = GetDirectory()
+
+    message = "[DEBUGGING] Current Script Directory: " & currScriptDir & "\n"
+    message = message & "\n"
+    message = message & "{searching for... '" & query1 & "\n"
+
+    // message = Replace(message, "\n", vbCrLf)
 
     Call updateResultsVBScript(targetOutput,message)
   End Sub
@@ -115,11 +153,14 @@ References
 3. https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_textarea
 4. https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_input_test
 5. https://stackoverflow.com/questions/10520899/form-action-with-javascript/34467977
+6. https://devblogs.microsoft.com/scripting/how-can-i-determine-the-path-to-the-folder-where-a-script-is-running/
+7. https://stackoverflow.com/questions/37418826/vbs-code-not-working-in-hta-wscript-declaration
 
 Others
 a. https://stackoverflow.com/questions/8082846/form-submit-execute-javascript-best-practice  <cleaner form submits for JavaScript Processing...>
 b. https://social.technet.microsoft.com/Forums/office/en-US/71351a4d-8034-4cf8-b4d0-8b0d2bed0f4c/script-to-create-a-user-from-input-values-on-a-hta-form?forum=ITCG <form SUBMIT != Button!!!>
 c. https://stackoverflow.com/questions/6424094/how-to-define-do-nothing-in-javascript/6424121 <void(0) == No-OP>
+d. https://stackoverflow.com/questions/40476304/error-object-required-wscript-in-hta
 -->
 
 
