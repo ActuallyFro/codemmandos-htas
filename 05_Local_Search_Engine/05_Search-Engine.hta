@@ -95,10 +95,11 @@ Search results from your query will show up here AFTER you click search!
     ListOfTxtFiles = GetDirectorFilesByType(currDirectory,"txt")
 
     If IsArray(ListOfTxtFiles) And UBound(ListOfTxtFiles) >= 0 Then
-      Dim ListAsString, ListSize
+      Dim ListAsString, ListSize, ListSizeByCount
       ListSize = UBound(ListOfTxtFiles)
+      ListSizeByCount = ListSize + 1
       ListAsString = Join(ListOfTxtFiles,", ")
-      message = message & "[DEBUGGING] Found TEXT '" & ListSize & "' FILES! (" & ListAsString & ")"& vbnewline
+      message = message & "[DEBUGGING] Found TEXT '" & ListSizeByCount & "' FILES! (" & ListAsString & ")"& vbnewline
 
       // Iterate OVER the files, for individual string searching...
       Dim singleFile
