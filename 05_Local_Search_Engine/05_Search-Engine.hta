@@ -34,27 +34,18 @@
 
     <h3><span class="primaryColor">Enter your search string:</span></h3>
 
-    <!-- <form action="#" onsubmit="return sayHello(this);"> <!-- [4]
-    <!-- <form onsubmit="sayHello(this)"> <!-- action="javascript:;" 
-      <h3><span class="primaryColor"><label>Query word or phrase</label></span>
-      <input type="text" id="q1"><br><br>
-      <!-- <h3><span class="primaryColor"><label>Second word(s)</label></span>
-      <input type="text" id="q2"><br><br> 
-      <input type="button" value="Search">
-    </form> -->
-
     <h3><span class="primaryColor">Query word or phrase</span></h3>
       <p><input type="text" id="q1"/>
         &nbsp;
-    <button onclick="sayHello()">Click me</button> -->
+    <button onclick="runSearch()">Search</button> -->
 
     <br>
     <br> <!-- Coding like it's 1998-->
     <br>
 
-    <textarea id="demo" rows="4" cols="50">
-      At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-    </textarea> <!-- [3] -->
+    <textarea id="searchResults" rows="4" cols="50">
+Search results from your query will show up here AFTER you click search!
+    </textarea>
 
 
 
@@ -62,13 +53,13 @@
 </html>
 
 <script language="JavaScript">
-  function change_text(target, message){
+  function updateResults(target, message){
     document.getElementById(target).innerHTML = message;
   }
   
-  function sayHello(){ //<!-- [2] -->
+  function runSearch(){ //<!-- [2] -->
     //MOST OF THIS REIVENTING THE WHEEL STEMS FROM TRIANGLE BRACKETS!!!!
-    change_text("demo",'{searching for..."'+document.getElementById("q1").value+'" }')
+    updateResults("searchResults",'{searching for..."'+document.getElementById("q1").value+'"}')
   }
   
   </script>
