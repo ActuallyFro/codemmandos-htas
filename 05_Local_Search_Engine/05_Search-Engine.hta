@@ -80,35 +80,41 @@ Search results from your query will show up here AFTER you click search!
     // or
     // [ii] output to file and open it (https://stackoverflow.com/questions/44579719/how-to-open-an-appication-using-vbscript-within-an-hta-file)
 
-    message = "[DEBUGGING] Current Script Directory: " & currScriptDir & "\n"
-    message = message & "\n"
-    message = message & "{searching for... '" & query1 & "\n"
+    message = "[DEBUGGING] Current Script Directory: " & currScriptDir & vbnewline
+    message = message & vbnewline
+    message = message & "{searching for... '" & query1 & vbnewline
 
-    // message = Replace(message, "\n", vbCrLf)
+    // message = Replace(message, vbnewline, vbCrLf)
 
     //Call RunProgram() //<!-- [ii] --> -- WORKS!
     // Call ListFilesWriteToCSV("ScriptOutput.csv")
     // Call OpenFile("ScriptOutput.csv")
 
-    Dim ListOfTxtFiles
-    ListOfTxtFiles = GetDirectorFilesByType(GetDirectory(),"txt")
+    Dim ListOfTxtFiles, currDirectory
+    currDirectory = GetDirectory()
+    ListOfTxtFiles = GetDirectorFilesByType(currDirectory,"txt")
 
     If IsArray(ListOfTxtFiles) And UBound(ListOfTxtFiles) >= 0 Then
-      Dim ListAsString
+      Dim ListAsString, ListSize
+      ListSize = UBound(ListOfTxtFiles)
       ListAsString = Join(ListOfTxtFiles,", ")
-      message = message & "[DEBUGGING] Found TEXT FILES! (" & ListAsString & ")"& "\n"
+      message = message & "[DEBUGGING] Found TEXT '" & ListSize & "' FILES! (" & ListAsString & ")"& vbnewline
+
+      // Iterate OVER the files, for individual string searching...
+      Dim singleFile
+      // For Each singleFile In ListOfTxtFiles ' IS NOT working!
+      Dim index
+      For index = 0 to ListSize Step 1    
+        Dim filePathAndName
+        filePathAndName = currDirectory & "\" & ListOfTxtFiles(index)
+        message = message & "[DEBUGGING] Opening file: {" & filePathAndName & "}" & vbnewline
+      Next
+
+
     Else
-      message = message & "[DEBUGGING] NO TEXTFILES! ({})"& "\n"
+      message = message & "[DEBUGGING] NO TEXTFILES! ({})"& vbnewline
     End If
-    
-    // Iterate OVER the files, for individual string searching...
-    // Dim files, singleFile
-    // For Each singleFile In files
-    //   If LCase(fso.GetExtensionName(singleFile.Name)) = fileTypeThen
-    //     FileList = ArrayAddItem(FileList, singleFile.Name)
-    //   End If
-      
-    // Next
+
 
 
 
