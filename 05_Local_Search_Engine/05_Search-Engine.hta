@@ -36,7 +36,11 @@
     <!--Custom Google Search Form-->
     <h3><span class="primaryColor">When you click a button it will change the text of sample paragraph.</span></h3>
 
-    <p id="demo">I am sample paragraph.</p>
+    <h3><span class="primaryColor">
+      <p id="demo">
+        I am sample paragraph.
+      </p>
+    </span></h3>
     
     <button onclick="sayHello()">Click me</button>
 
@@ -44,8 +48,12 @@
 </html>
 
 <script language="JavaScript">
-  function sayHello(){
-    void(0);
+  function change_text(target, message){
+      document.getElementById(target).innerHTML = message;
+  }
+
+  function sayHello(){ //<!-- [2] -->
+    change_text("demo","You clicked the button, I am new paragraph.")
   }
 
 </script>
