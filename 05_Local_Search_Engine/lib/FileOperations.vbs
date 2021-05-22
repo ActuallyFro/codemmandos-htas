@@ -1,3 +1,5 @@
+  'Option Explicit == force all variables to be declared
+  
   Function GetFullName() // <!-- [7] -->
     GetFullName = Replace(cmdoSE.commandLine,"""","") //WARNING! -- This depends on the HTA definition above!!!
   End Function
@@ -54,6 +56,8 @@
       OutputFile.Write("DateLastModified")
       OutputFile.Write(",")
       OutputFile.WriteLine("Size")
+      OutputFile.Write(",")
+      OutputFile.WriteLine("FileType")
 
 
     ' Loop through each file 
@@ -71,6 +75,8 @@
       OutputFile.Write(singleFile.DateLastModified)
       OutputFile.Write(",")
       OutputFile.WriteLine(singleFile.Size)
+      OutputFile.Write(",")
+      OutputFile.WriteLine(fso.GetExtensionName(singleFile.Name)) 'https://stackoverflow.com/questions/18920310/vbscript-to-search-for-all-files-with-an-extension-and-save-them-to-a-csv
       
     Next
 
