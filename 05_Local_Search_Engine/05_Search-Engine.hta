@@ -35,13 +35,14 @@
     <h3><span class="primaryColor">Enter your search string:</span></h3>
 
     <h3><span class="primaryColor">Query word or phrase</span></h3>
-      <p><input type="text" id="q1"/>
-        &nbsp;
-      <button onclick="javascript:runSearchJavaScript()">Search JS</button> -->
+
+    <p><input type="text" id="q1"/>
+      &nbsp;
+    <button onclick="javascript:runSearchJavaScript()">Search JS</button> -->
   
-      <p><input type="text" id="vbQ1"/>
-          &nbsp;
-      <input type="button" value="Search VBScript" onclick="vbscript:runSearchVBScript()" /></p>
+    <p><input type="text" id="vbQ1"/>
+      &nbsp;
+    <input type="button" value="Search VBScript" onclick="vbscript:runSearchVBScript()" /></p>
 
     <br>
     <br> <!-- Coding like it's 1998-->
@@ -56,16 +57,16 @@ Search results from your query will show up here AFTER you click search!
   </body>
 </html>
 
-<script language="text/VBScript">
+<script language="VBScript">
   Option Explicit
 
   Sub runSearchVBScript( )
-    Dim queryString1
-    queryString1 = document.getElementById( "vbQ1" ).value
+    Dim query1
+    query1 = document.getElementById( "vbQ1" ).value
 
-    document.getElementById( "searchResults" ).innerHTML = "{searching for... '" & queryString1 & "'}"
-  End Sub
+    document.getElementById( "searchResults" ).innerHTML =  "{searching for... '" & query1 & "'}"
 
+End Sub
 </script>
 
 <script language="JavaScript">
