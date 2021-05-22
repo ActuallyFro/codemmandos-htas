@@ -105,17 +105,83 @@ Search results from your query will show up here AFTER you click search!
       Dim singleFile
       // For Each singleFile In ListOfTxtFiles ' IS NOT working!
       Dim index
+
+      ////////////////
+      //https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/opentextfile-method
+      Const ForReading = 1
+      Const ForWriting = 2
+      Const ForAppending = 8
+        
+      Dim outFileName
+      Dim fso, fso2, OutputFile, InputFile
+
+      outFileName = "TempFindings.md"
+      
+      ' Create a FileSystemObject  
+      Set fso = CreateObject("Scripting.FileSystemObject")
+      Set fso2 = CreateObject("Scripting.FileSystemObject")
+      Set OutputFile = fso.CreateTextFile(currDirectory & "/" & outFileName, ForWriting, True)
+
+
       For index = 0 to ListSize Step 1    
         Dim filePathAndName
         filePathAndName = currDirectory & "\" & ListOfTxtFiles(index)
         message = message & "[DEBUGGING] Opening file: {" & filePathAndName & "}" & vbnewline
+
+        //----------------------
+        //https://www.itninja.com/question/vbs-script-to-search-a-string-in-a-textfile-and-add-string-if-not-found + https://devblogs.microsoft.com/scripting/how-can-i-search-a-text-file-for-strings-meeting-a-specified-pattern/
+        // Dim objFSO, inTxtFile, outFileName, outTxtFile //objShell
+        // Set objFSO = Wscript.CreateObject("Scripting.FileSystemObject")
+
+        // Set objShell = Wscript.CreateObject("Wscript.Shell")
+
+        // Dim sToSearch: sToSearch = "What you're Looking for"
+        // Dim sFileName: sFileName = "C:\Temp.txt"
+        // Dim sContent, Found
+        // If Not objFSO.FileExists(sFileName) Then
+        // MsgBox "File Not Found"
+        // WScript.Quit 0
+        // End If
+        Set InputFile = fso2.OpenTextFile(filePathAndName, ForReading)
+        //sContent = InputFile.ReadAll
+
+        // If InStr(sContent,query1) Then
+        //   Found = True
+        // End If
+        Dim objRegEx, strSearchString, colMatches, strMatch
+        Set objRegEx = CreateObject("VBScript.RegExp")
+        objRegEx.Pattern = query1
+        Do Until InputFile.AtEndOfStream
+          strSearchString = InputFile.ReadLine
+          Set colMatches = objRegEx.Execute(strSearchString)  
+          If colMatches.Count > 0 Then
+            For Each strMatch in colMatches   
+              OutputFile.Write("###Found in: " & filePathAndName & "\n===" & strSearchString )
+            Next
+          End If
+        Loop
+        Set InputFile = Nothing
+
+        // If Found Then
+        // End If
+        // If Not Found Then
+        //   Set outTxtFile = objFSO.OpenTextFile(outFileName,FORAPPENDING)
+        //   TxtFile.WriteLine query1
+        // End If
+        // Set outTxtFile = Nothing
+        //----------------------
+
       Next
 
+      OutputFile.Close
+
     //This for ALL of Lines <ListOfTxtFiles = GetDirec... to Next> {Lines 95 to 112ish}?? -- https://stackoverflow.com/questions/16751301/find-specific-string-in-a-text-file-with-vbs-script
+    // Dim fso
+    //  Set fso = CreateObject("Scripting.FileSystemObject")
     // For Each f In fso.GetFolder("C:\VBS").Files
     //   If LCase(fso.GetExtensionName(f.Name)) = "txt" Then
     //     text = f.OpenAsTextStream.ReadAll
-    //     f.OpenAsTextStream(2).Write re.Replace(text, newText & "$1")
+    //     <...>
     //   End If
     // Next
 
