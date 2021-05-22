@@ -1,64 +1,51 @@
-<!-- <html>
-  <body>
 
-    A Simple Search Engine
-
-    <div id="consoleLog"></div> <!-- [1] 
-
-
-
-</body>
-</html>
-
-<script>
-  function logToContainer (target, message) { //<!-- [1]
-    var container = document.getElementById("consoleLog")
-    var messageElement = document.createElement('p')
-    messageElement.innerHtml = message
-    container.appendChild(messageElement)
-  }  
-
-  function sayHello(){
-    logToContainer("consoleLog", "Hello World!");
-  }
-
-</script>
-
-<button onclick="sayHello()">Say Hello!</button>  <!-- [2]
-
-<!-- 
-References
-1. https://stackoverflow.com/questions/36342437/show-console-log-in-an-html-element-in-javascript/36343024
-2. https://www.w3schools.com/jsref/event_onclick.asp
-
--->
-
-<!DOCTYPE html> <!-- [1] -->
 <html>
-<body>
+<head>
+  <hta:application id="GlgC" icon="../00_Resources/fav.ico" version="1.0.0"/>
+  <title>Codemmandos: 'GoogleCode' (Custom, code-based Google Search)</title>
 
-<p>When you click a button it will change the text of sample paragraph.</p>
+  <!-- Escape to Quit-->
+  <script language="VBScript">
+    Sub Document_OnKeyUp()
+      intKeyCode = Window.Event.Keycode
+      If intKeyCode = 27 Then Window.Close
+    End Sub
 
-<p id="demo">I am sample paragraph.</p>
+    Sub Window_onLoad
+      window.resizeTo 482, 365
+      document.title = document.title & ",  Version " & GlgC.Version
+    End Sub
+  </script>
+</head>
 
-<button onclick="sayHello()">Click me</button>
+<!-- Stolen from codemmandos.com: -->
+  <style>
+    .accentColor {
+      color: #FFC940;
+    }
+
+    .primaryColor {
+      color: #FFFFFF;
+    }
+  </style>
+
+<body scroll="no" style="text-align:center;" bgcolor="black">
+    <h1> <span class="accentColor">CODE</span><span class="primaryColor">MMANDOS</span></h1>
+
+    <!-- From: https://www.oakton.edu/user/2/rjtaylor/cis101/Google%20Hacking%20101.pdf -->
+    <!--Custom Google Search Form-->
+    <h3><span class="primaryColor">When you click a button it will change the text of sample paragraph.</span></h3>
+
+    <p id="demo">I am sample paragraph.</p>
+    
+    <button onclick="sayHello()">Click me</button>
+
+  </body>
+</html>
 
 <script>
-  function change_text(target, message){
-      document.getElementById(target).innerHTML = message;
-  }
-
-  function sayHello(){ //<!-- [2] -->
-    change_text("demo","You clicked the button, I am new paragraph.")
+  function sayHello(){
+    void(0);
   }
 
 </script>
-
-</body>
-</html>
-
-<!-- 
-References
-1. https://errorsea.com/how-to-change-text-onclick-event-javascript/
-2. https://stackoverflow.com/questions/44195082/how-to-pass-element-id-in-javascript-as-argument-or-parameter
--->
