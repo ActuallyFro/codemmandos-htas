@@ -34,15 +34,19 @@
 
     <h3><span class="primaryColor">Enter your search string:</span></h3>
 
-    <!-- <form action="#" onsubmit="return sayHello(this);"> <!-- [4] -->
-    <form onsubmit="sayHello(this)"> <!-- action="javascript:;" -->
+    <!-- <form action="#" onsubmit="return sayHello(this);"> <!-- [4]
+    <!-- <form onsubmit="sayHello(this)"> <!-- action="javascript:;" 
       <h3><span class="primaryColor"><label>Query word or phrase</label></span>
       <input type="text" id="q1"><br><br>
       <!-- <h3><span class="primaryColor"><label>Second word(s)</label></span>
-      <input type="text" id="q2"><br><br> -->
-      <input type="submit" value="Search">
-    </form>
-    <!-- <button onclick="sayHello()">Click me</button> -->
+      <input type="text" id="q2"><br><br> 
+      <input type="button" value="Search">
+    </form> -->
+
+    <h3><span class="primaryColor">Query word or phrase</span></h3>
+      <p><input type="text" id="q1"/>
+        &nbsp;
+    <button onclick="sayHello()">Click me</button> -->
 
     <br>
     <br> <!-- Coding like it's 1998-->
@@ -53,33 +57,20 @@
     </textarea> <!-- [3] -->
 
 
+
   </body>
 </html>
 
 <script language="JavaScript">
   function change_text(target, message){
-      document.getElementById(target).innerHTML = message;
+    document.getElementById(target).innerHTML = message;
   }
-
-  function sayHello(theForm){ 
-    change_text("demo","<searching for '"+ theForm.q1 +"'>") //<!-- [2] -->
-
-    //<!-- [5] -->
-    // var reason = ""; 
-    // reason += validateName(theForm.name);
-    // reason += validatePhone(theForm.phone);
-    // reason += validateEmail(theForm.emaile);
-
-    // if (reason != "") {
-    //     alert("Some fields need correction:\n" + reason);
-    // } else {
-    //     simpleCart.checkout();
-    // }
-    // return false;
-
+  
+  function sayHello(){ //<!-- [2] -->
+  change_text("demo","You clicked the button, I am new paragraph.")
   }
-
-</script>
+  
+  </script>
 
 <!-- 
 References
@@ -90,4 +81,5 @@ References
 5. https://stackoverflow.com/questions/10520899/form-action-with-javascript/34467977
 
 -->
+
 
