@@ -35,7 +35,6 @@
     &nbsp;
   <h3><span class="primaryColor"><p><label>File Types: </label></span><input type="text" id="vbQ2" value="txt"/>
     &nbsp;
-  <!-- <input type="button" value="Search VBScript" onclick="vbscript:runSearchVBScript()" /></p> -->
   &nbsp;
   <input type="button" value="Search for String!" name="run_button"  onClick="powerShSearchFilesForStr"><p> 
 
@@ -46,21 +45,13 @@
 
 
 <script language="VBScript">
+  // Print String into HTML
   Sub updateResultsVBScript(targetOutput, message)
     document.getElementById( targetOutput ).innerHTML =  message 
   End Sub
 
+  // Send merged command (from inputs) into PowerShell
   Sub powerShSearchFilesForStr
-
-    // Set WshShell = CreateObject("WScript.Shell")
-    // return = WshShell.Run("powershell.exe -ExecutionPolicy Unrestricted -File test.ps1", 0, true)
-    // Set fso  = CreateObject("Scripting.FileSystemObject")
-    // Set file = fso.OpenTextFile("c:\temp\output.txt", 1)
-    // text = file.ReadAll     
-    // alert(text)     
-    // file.Close      
-
-    // Option Explicit
     Dim searchPatternStr, strFileType, strPSCommand, objShell, objExec, strPSResults
 
     searchPatternStr = document.getElementById( "vbQ1" ).value
@@ -70,12 +61,9 @@
     
     Set objShell = CreateObject("Wscript.Shell")
 
-    // objShell.Run "powershell -command " & strPSCommand & ""
-    // 'objShell.Run "notepad.exe " & "STASH_trial.hta"
     Set objExec = objShell.Exec(strDOSCommand)
     strPSResults = objExec.StdOut.ReadAll
 
-    // WScript.Echo(strPSResults)
     Dim targetOutput
     targetOutput = "searchResults"
 
